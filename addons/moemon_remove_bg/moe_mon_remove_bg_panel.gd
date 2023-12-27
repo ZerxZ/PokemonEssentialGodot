@@ -56,7 +56,6 @@ func remove_backgroud(imageData:Image):
 	for x in range(oldWidth):
 		for y in range(oldHeight):
 			var oldColor = imageData.get_pixel(x,y)
-			oldColor.to_html()
 			if colorCallble.call(bgColor,oldColor):
 				oldColor = Color(0,0,0,0)
 			newData.set_pixel(x,y,oldColor)
@@ -97,6 +96,8 @@ func convert_image(files):
 				var newPath = outputFolder + "/" + file.get_basename()
 				save_image(newImage,newPath)
 				mutex.unlock()
+		thread.wait_to_finish()
+
 
 func save_image(image:Image, path:String) -> void:
 	match fileType:
