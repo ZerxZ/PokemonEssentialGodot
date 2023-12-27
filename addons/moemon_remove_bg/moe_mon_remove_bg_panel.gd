@@ -1,5 +1,6 @@
 @tool
 extends Control
+class_name MoemonRemoveBGPanel
 
 enum FolderState {NONE,SOURCE,OUTPUT}
 enum FileType {PNG,JPG,JPEG,WEBP}
@@ -96,7 +97,6 @@ func convert_image(files):
 				var newPath = outputFolder + "/" + file.get_basename()
 				save_image(newImage,newPath)
 				mutex.unlock()
-		thread.wait_to_finish()
 
 
 func save_image(image:Image, path:String) -> void:
@@ -148,5 +148,3 @@ func _on_convert_button_button_down() -> void:
 func _on_format_option_button_item_selected(index:int) -> void:
 	fileType = FileType.values()[index]
 #endregion
-func _exit_tree():
-		thread.wait_to_finish()
