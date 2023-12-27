@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://cauj1mnw5frt5"]
+
+[ext_resource type="Script" path="res://Scene/Title/title_menu.gd" id="1_32brm"]
+[ext_resource type="Texture2D" uid="uid://cdqcs0mq6md1y" path="res://Asset/Graphic/Pictures/loadbg.png" id="1_hu1u1"]
+[ext_resource type="Theme" uid="uid://v8c01ptqygbj" path="res://Theme/TitleTime.tres" id="2_47ovt"]
+[ext_resource type="PackedScene" uid="uid://dbo7ypnb0pgbi" path="res://Scene/Title/load_button.tscn" id="3_nap1i"]
+
+[node name="TitleMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_32brm")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_hu1u1")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 20
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="LoadButton" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource("3_nap1i")]
+layout_mode = 2
+
+[node name="NewGameButton" type="Button" parent="MarginContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_47ovt")
+text = "开始游戏"
+
+[node name="SettingButton" type="Button" parent="MarginContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("2_47ovt")
+text = "设置"
+
+[node name="QuitButton" type="Button" parent="MarginContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("2_47ovt")
+text = "退出游戏"

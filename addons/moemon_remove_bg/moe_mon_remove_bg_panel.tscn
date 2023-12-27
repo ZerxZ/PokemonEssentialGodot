@@ -1,0 +1,142 @@
+[gd_scene load_steps=2 format=3 uid="uid://duumwukjxmsk1"]
+
+[ext_resource type="Script" path="res://addons/moemon_remove_bg/moe_mon_remove_bg_panel.gd" id="1_s7c70"]
+
+[node name="MoeMonRemoveBgPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s7c70")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "去掉背景"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="Label" type="Label" parent="MarginContainer/GridContainer/GridContainer"]
+layout_mode = 2
+text = "原版文件夹:"
+
+[node name="SourceLineEdit" type="LineEdit" parent="MarginContainer/GridContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SouceFolderButton" type="Button" parent="MarginContainer/GridContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "选择文件夹"
+
+[node name="Label2" type="Label" parent="MarginContainer/GridContainer/GridContainer"]
+layout_mode = 2
+text = "输出文件夹:"
+
+[node name="OutputLineEdit" type="LineEdit" parent="MarginContainer/GridContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OutputFolderButton" type="Button" parent="MarginContainer/GridContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "选择文件夹"
+
+[node name="Label3" type="Label" parent="MarginContainer/GridContainer/GridContainer"]
+layout_mode = 2
+text = "背景颜色相差："
+
+[node name="ColorSpinBox" type="SpinBox" parent="MarginContainer/GridContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 999999.0
+value = 3.0
+update_on_text_changed = true
+
+[node name="Control" type="Control" parent="MarginContainer/GridContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="MarginContainer/GridContainer/GridContainer"]
+layout_mode = 2
+text = "保存格式:"
+
+[node name="FormatOptionButton" type="OptionButton" parent="MarginContainer/GridContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+item_count = 4
+selected = 0
+popup/item_0/text = "PNG"
+popup/item_0/id = 0
+popup/item_1/text = "JPG"
+popup/item_1/id = 1
+popup/item_2/text = "JPEG"
+popup/item_2/id = 3
+popup/item_3/text = "WEBP"
+popup/item_3/id = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/GridContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/GridContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/GridContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="ConvertButton" type="Button" parent="MarginContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+text = "转换"
+
+[node name="FolderDialog" type="FileDialog" parent="."]
+unique_name_in_owner = true
+title = "Open a Directory"
+size = Vector2i(500, 500)
+ok_button_text = "选择当前文件夹"
+file_mode = 2
+show_hidden_files = true
+
+[connection signal="button_down" from="MarginContainer/GridContainer/GridContainer/SouceFolderButton" to="." method="_on_souce_folder_button_button_down"]
+[connection signal="button_down" from="MarginContainer/GridContainer/GridContainer/OutputFolderButton" to="." method="_on_output_folder_button_button_down"]
+[connection signal="value_changed" from="MarginContainer/GridContainer/GridContainer/ColorSpinBox" to="." method="_on_spin_box_value_changed"]
+[connection signal="item_selected" from="MarginContainer/GridContainer/GridContainer/FormatOptionButton" to="." method="_on_format_option_button_item_selected"]
+[connection signal="button_down" from="MarginContainer/GridContainer/ConvertButton" to="." method="_on_convert_button_button_down"]
+[connection signal="dir_selected" from="FolderDialog" to="." method="_on_folder_dialog_dir_selected"]
